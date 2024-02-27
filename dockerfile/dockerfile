@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/windows:10.0.17763.5458
+
+# Set the working directory inside the container
+WORKDIR /xwfportable
+
+# Copy the entire xwfportable directory from the build context
+COPY xwfportable .
+
+# Create the required directories within the container
+# Adjust these commands for Windows-style paths if necessary
+RUN mkdir C:\XWHashes1 \
+    && mkdir "C:\XWHashes1 [FuzZyDoc]" \
+    && mkdir C:\XWHashes2 \
+    && mkdir C:\XWImages \
+    && mkdir C:\XWScriptsAndTemplates \
+    && mkdir C:\XWTemp \
+    && mkdir C:\XWCases
+
+# Copy the contents of some directories into the container from the build context
+COPY XWHashes1 C:\XWHashes1
+COPY "XWHashes1 [FuzZyDoc]" "C:\\XWHashes1 [FuzZyDoc]"
+COPY XWHashes2 C:\XWHashes2
+COPY XWScriptsAndTemplates C:\XWScriptsAndTemplates
